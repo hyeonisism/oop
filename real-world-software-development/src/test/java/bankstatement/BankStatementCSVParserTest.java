@@ -1,10 +1,12 @@
 package bankstatement;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BankStatementCSVParserTest {
 
@@ -20,11 +22,9 @@ public class BankStatementCSVParserTest {
         //when
         final BankTransaction expected = new BankTransaction(LocalDate.of(2017, Month.JANUARY, 30), -50, "Tesco");
 
-        final double tolerance = 0.0d;
-
         //then
-        Assert.assertEquals(expected.getDate(), result.getDate());
-        Assert.assertEquals(expected.getAmount(), result.getAmount(), tolerance);
-        Assert.assertEquals(expected.getDescription(), result.getDescription());
+        assertThat(expected.getDate()).isEqualTo(result.getDate());
+        assertThat(expected.getDescription()).isEqualTo(result.getDescription());
+        assertThat(expected.getAmount()).isEqualTo(result.getAmount());
     }
 }
